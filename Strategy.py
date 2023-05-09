@@ -4,6 +4,8 @@ Created on Mon May  8 20:07:51 2023
 
 @author: huang
 """
+# this is an implementation based on “https://www.vegashowto.com/blackjack-basic-strategy”
+# no splitting pairs
 
 def basic_strategy(player_total, dealer_value, soft):
 

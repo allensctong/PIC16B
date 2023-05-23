@@ -2,7 +2,6 @@
 """
 Created on Mon May  8 13:27:29 2023
 
-@author: huang
 """
 
 
@@ -32,12 +31,12 @@ def draw_hand(np_random):
     return [draw_card(np_random), draw_card(np_random)]
 
 
-def soft(hand):  # Does this hand have a usable ace?
+def usable_ace(hand):  # Does this hand have a usable ace?
     return 1 in hand and sum(hand) + 10 <= 21
 
 
 def sum_hand(hand):  # Return current hand total
-    if soft(hand):
+    if usable_ace(hand):
         return sum(hand) + 10
     return sum(hand)
 
@@ -56,6 +55,9 @@ def is_natural(hand):  # Is this hand a natural blackjack?
 
 class BlackjackEnv(gym.Env):
     """
+    Blackjack is a card game where the goal is to beat the dealer by obtaining cards
+    that sum to closer to 21 (without going over 21) than the dealers cards.
+
     ### Description
     Card Values:
 
@@ -73,9 +75,8 @@ class BlackjackEnv(gym.Env):
     until their sum is 17 or greater.  If the dealer goes bust, the player wins.
     If neither the player nor the dealer busts, the outcome (win, lose, draw) is
     decided by whose sum is closer to 21.
-
     ### Action Space
-    There are two actions: stand (0), and hit (1).
+    There are two actions: stick (0), and hit (1).
 
     ### Observation Space
     The observation consists of a 3-tuple containing: the player's current sum,
@@ -167,7 +168,7 @@ class BlackjackEnv(gym.Env):
         return self._get_obs(), reward, terminated, False, {}
 
     def _get_obs(self):
-        return (sum_hand(self.player), self.dealer[0], soft(self.player))
+        return (sum_hand(self.player), self.dealer[0], usable_ace(self.player))
 
     def reset(
         self,
@@ -180,7 +181,7 @@ class BlackjackEnv(gym.Env):
 
         _, dealer_card_value, _ = self._get_obs()
 
-        suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
+        suits = ["C", "D", "H", "S"]
         self.dealer_top_card_suit = self.np_random.choice(suits)
 
         if dealer_card_value == 1:
@@ -294,12 +295,12 @@ class BlackjackEnv(gym.Env):
             ),
         )
 
-        if soft:
-            soft_text = small_font.render("soft", True, white)
+        if usable_ace:
+            usable_ace_text = small_font.render("usable ace", True, white)
             self.screen.blit(
-                soft_text,
+                usable_ace_text,
                 (
-                    screen_width // 2 - soft_text.get_width() // 2,
+                    screen_width // 2 - usable_ace_text.get_width() // 2,
                     player_sum_text_rect.bottom + spacing // 2,
                 ),
             )

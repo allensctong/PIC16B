@@ -1,5 +1,6 @@
 # PIC16B - Reinforcement Learning for Blackjack
 Members: Aria Huang, Allen Tong, Xiaofu Ding
+
 Report link: https://www.notion.so/PIC-16B-RL-for-BlackJack-Final-Report-85b60229d5784d09a9f218c08813a80a#4306541a8c064da4917d359e860486a8
 ### Project Description
 

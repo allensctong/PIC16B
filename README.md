@@ -1,7 +1,6 @@
 # PIC16B - Reinforcement Learning for Blackjack
 Members: Aria Huang, Allen Tong, Xiaofu Ding
-
-Report link: 
+ 
 ### Project Description
 
 In this project, we will use reinforcement learning to train an AI to play the gambling game BlackJack, with the goal of discovering advanced strategies for winning the game. We plan to compare the performance of two different reinforcement learning algorithms in training an AI to play the gambling game BlackJack. We started by using openAI gym “blackjack” environment but realized that it’s a simpler version where the action space is fixed and player can only “hit” or “stand”.  The goal of the project is to evaluate which algorithm can discover advanced strategies for winning the game more effectively. By comparing the performance of the three agents, we will identify which algorithm is most effective in learning optimal strategies for playing BlackJack. The process involves defining the game's state and action spaces, and then training an agent to take actions that maximize the expected cumulative reward over time. The reinforcement learning algorithm updates the agent's policy or decision-making function based on the feedback received, and over time, the agent improves its decision-making process to maximize its reward.
